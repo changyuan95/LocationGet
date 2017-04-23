@@ -30,7 +30,7 @@
             </android.support.v7.widget.Toolbar>
 
             <ImageView
-                android:id="@+id/infomation_image"
+                android:id="@+id/information_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
@@ -45,7 +45,7 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_settings"
-        android:id="@+id/set_infomation"
+        android:id="@+id/fab_information"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"/>
 
@@ -69,10 +69,10 @@
                 app:cardCornerRadius="4dp">
 
                 <TextView
+                    android:id="@+id/personal_information"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
-                    android:text="家庭住址：\n家庭电话：\n家人手机：\n"
                     android:textSize="23dp" />
 
             </android.support.v7.widget.CardView>

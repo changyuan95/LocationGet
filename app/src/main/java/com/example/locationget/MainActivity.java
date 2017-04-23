@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mLocationClient.registerLocationListener(new MyLocationListener());
         setContentView(R.layout.activity_main);
 
-        /*List<String> permissionList = new ArrayList<>();
+        List<String> permissionList = new ArrayList<>();
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
         }
@@ -74,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
         else{
             requestLocation();
 
-        }*/
-        requestLocation();
+        }
 
         function1 = (CardView)findViewById(R.id.function1);
         function2 = (CardView)findViewById(R.id.function2);
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         function1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                Intent intent = new Intent(MainActivity.this, Locate.class);
                 intent.putExtra("string_data", context);
                 startActivity(intent);
             }
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         function4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Infomation.class);
+                Intent intent = new Intent(MainActivity.this, Information.class);
                 startActivity(intent);
             }
         });
@@ -164,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /*@Override
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch(requestCode){
             case 1:
@@ -185,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
         }
-    }*/
+    }
 
     @Override
     protected void onDestroy() {

@@ -51,26 +51,33 @@ android:fitsSystemWindows="true">
             android:id="@+id/position_text_view"
             android:textSize="30sp"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
             />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/auto_send"
-            android:text="点击后台自动发送短信"/>
+            android:text="点击后台自动发送短信"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/send_text"
             android:text="点击手动发送短信"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/show_map"
-            android:text="在地图上显示位置"/>
+            android:text="在地图上显示位置"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"/>
 
 
     </LinearLayout>

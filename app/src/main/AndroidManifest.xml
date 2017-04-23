@@ -29,8 +29,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,31 +43,34 @@
             android:process=":remote" />
 
         <activity
-            android:name=".SecondActivity"
+            android:name=".Locate"
             android:label="@string/title_activity_second"
-            android:theme="@style/RecordActivityTheme"/>
+            android:theme="@style/RecordActivityTheme" />
         <activity
             android:name=".Settings"
             android:label="设置"
-            android:theme="@style/RecordActivityTheme"/>
+            android:theme="@style/RecordActivityTheme" />
         <activity
             android:name=".Track"
             android:label="实时追踪" />
         <activity
-            android:name=".Infomation"
+            android:name=".Information"
             android:label="个人中心"
-            android:theme="@style/RecordActivityTheme"/>
+            android:theme="@style/RecordActivityTheme" />
         <activity
             android:name=".ShowMap"
             android:label="地图显示" />
-        <activity android:name=".About"
+        <activity
+            android:name=".About"
             android:label="关于"
-            android:theme="@style/RecordActivityTheme"/>
-        <activity android:name=".Record"
+            android:theme="@style/RecordActivityTheme" />
+        <activity
+            android:name=".Record"
             android:label="位置记录"
-            android:theme="@style/RecordActivityTheme">
-
-        </activity>
+            android:theme="@style/RecordActivityTheme"></activity>
+        <activity android:name=".SetInformation"
+            android:label="个人信息设置"
+            android:theme="@style/RecordActivityTheme"></activity>
     </application>
 
 </manifest>

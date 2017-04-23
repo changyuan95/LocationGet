@@ -1,6 +1,7 @@
 package com.example.locationget;
 
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,10 +21,15 @@ public class Settings extends AppCompatActivity {
     private EditText sendRate;
     private Button ensureNumber;
     private Button ensureRate;
-    public static String number = "";
+    private String number = "";
     private TextView setPhone;
     public static String rate = "";
     private TextView setRate;
+    private EditText pNumber;
+    private Button ensurePnumber;
+    private TextView setNumber;
+    private String pnumber = "";
+
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +45,33 @@ public class Settings extends AppCompatActivity {
              actionBar.setDisplayHomeAsUpEnabled(true);
          }
 
+         //获取data数据
+         SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+         number = pref.getString("number", "");
+         pnumber = pref.getString("pnumber", "");
+
          phoneNumber = (EditText)findViewById(R.id.phone_number);
          ensureNumber = (Button)findViewById(R.id.ensure_number);
          setPhone = (TextView)findViewById(R.id.set_phone);
+         //设置TextView
          if(number.equals("")){
-             setPhone.setText("     手机号：尚未设置");
+             setPhone.setText("     监控端手机号：尚未设置");
          }else{
-             setPhone.setText("     手机号：" + number);
+             setPhone.setText("     监控端手机号：" + number);
          }
+         //存储被监控端设置
          ensureNumber.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  if(!(phoneNumber.getText().toString().trim().equals(""))){
                      number = phoneNumber.getText().toString();
+                     SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+                     editor.putString("number", phoneNumber.getText().toString());
+                     editor.apply();
                      Toast.makeText(Settings.this, "设置成功", Toast.LENGTH_SHORT).show();
-                     setPhone.setText("     手机号：" + number);
+                     setPhone.setText("     监控端手机号：" + number);
                  }else{
-                     Toast.makeText(Settings.this, "请先输入手机号", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(Settings.this, "请先输入监控端手机号", Toast.LENGTH_SHORT).show();
                  }
              }
          });
@@ -76,6 +92,33 @@ public class Settings extends AppCompatActivity {
                      setRate.setText("     发送频率：" + rate);
                  }else{
                      Toast.makeText(Settings.this, "请先输入频率", Toast.LENGTH_SHORT).show();
+                 }
+             }
+         });
+
+         //监控端设置
+         pNumber = (EditText)findViewById(R.id.edit_number);
+         ensurePnumber = (Button)findViewById(R.id.button_number);
+         setNumber = (TextView)findViewById(R.id.text_number);
+         //设置TextView
+         if(pnumber.equals("")){
+             setNumber.setText("     被监控端手机号：尚未设置");
+         }else{
+             setNumber.setText("     被监控端手机号：" + pnumber);
+         }
+         //存储监控端设置
+         ensurePnumber.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 if(!(pNumber.getText().toString().trim().equals(""))){
+                     pnumber = pNumber.getText().toString();
+                     SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+                     editor.putString("pnumber", pNumber.getText().toString());
+                     editor.apply();
+                     Toast.makeText(Settings.this, "设置成功", Toast.LENGTH_SHORT).show();
+                     setNumber.setText("     被监控端手机号：" + pnumber);
+                 }else{
+                     Toast.makeText(Settings.this, "请先输入被监控端手机号", Toast.LENGTH_SHORT).show();
                  }
              }
          });

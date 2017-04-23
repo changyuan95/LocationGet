@@ -1,6 +1,7 @@
 package com.example.locationget;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,7 +20,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 
-public class SecondActivity extends AppCompatActivity{
+public class Locate extends AppCompatActivity{
 
 
     private TextView positionText;
@@ -29,10 +30,12 @@ public class SecondActivity extends AppCompatActivity{
 
     public String context;
 
+    private String number = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_locate);
 
         ImageView secondImage = (ImageView)findViewById(R.id.second_image);
         Glide.with(this).load(R.drawable.banana).into(secondImage);
@@ -43,6 +46,10 @@ public class SecondActivity extends AppCompatActivity{
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        //读取data数据中的监控端手机号
+        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+        number = pref.getString("number", "");
+
         context = getIntent().getStringExtra("string_data");
         positionText = (TextView)findViewById(R.id.position_text_view);
         positionText.setText(context);
@@ -50,11 +57,11 @@ public class SecondActivity extends AppCompatActivity{
         sendText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Settings.number != ""){
-                    send1(Settings.number, context);
+                if(number != ""){
+                    send1(number, context);
                 }
                 else{
-                    Toast.makeText(SecondActivity.this, "请先设置目标手机号", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Locate.this, "请先设置目标手机号", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -63,15 +70,16 @@ public class SecondActivity extends AppCompatActivity{
         showMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SecondActivity.this, ShowMap.class);
+                Intent intent = new Intent(Locate.this, ShowMap.class);
                 startActivity(intent);
             }
         });
+        //设定虚浮按钮点击事件
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SecondActivity.this, Settings.class);
+                Intent intent = new Intent(Locate.this, Settings.class);
                 startActivity(intent);
             }
         });
@@ -79,11 +87,11 @@ public class SecondActivity extends AppCompatActivity{
         autoSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Settings.number != ""){
-                    autosend(Settings.number, context);
+                if(number != ""){
+                    autosend(number, context);
                 }
                 else{
-                    Toast.makeText(SecondActivity.this, "请先设置目标手机号", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Locate.this, "请先设置目标手机号", Toast.LENGTH_SHORT).show();
                 }
             }
         });
