@@ -24,7 +24,7 @@ public class Settings extends AppCompatActivity {
     private Button ensureRate;
     private String number = "";
     private TextView setPhone;
-    public static String rate = "";
+    private String rate = "";
     private TextView setRate;
     private EditText pNumber;
     private Button ensurePnumber;
@@ -50,6 +50,7 @@ public class Settings extends AppCompatActivity {
          SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
          number = pref.getString("number", "");
          pnumber = pref.getString("pnumber", "");
+         rate = pref.getString("rate", "");
 
          phoneNumber = (EditText)findViewById(R.id.phone_number);
          ensureNumber = (Button)findViewById(R.id.ensure_number);
@@ -67,7 +68,7 @@ public class Settings extends AppCompatActivity {
                  if(!(phoneNumber.getText().toString().trim().equals(""))){
                      number = phoneNumber.getText().toString();
                      SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
-                     editor.putString("number", phoneNumber.getText().toString());
+                     editor.putString("number", number);
                      editor.apply();
                      Toast.makeText(Settings.this, "设置成功", Toast.LENGTH_SHORT).show();
                      setPhone.setText("     监控端手机号：" + number);
@@ -80,7 +81,7 @@ public class Settings extends AppCompatActivity {
          ensureRate = (Button)findViewById(R.id.ensure_rate);
          setRate = (TextView)findViewById(R.id.set_rate);
          if(rate.equals("")){
-             setRate.setText("     发送频率：尚未设置");
+             setRate.setText("     发送频率：尚未设置(默认只发送一条)");
          }else{
              setRate.setText("     发送频率：" + rate);
          }
@@ -89,6 +90,10 @@ public class Settings extends AppCompatActivity {
              public void onClick(View v) {
                  if(!(sendRate.getText().toString().trim().equals(""))){
                      rate = sendRate.getText().toString();
+                     //存储频率至data文件中
+                     SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+                     editor.putString("rate", rate);
+                     editor.apply();
                      Toast.makeText(Settings.this, "设置成功", Toast.LENGTH_SHORT).show();
                      setRate.setText("     发送频率：" + rate);
                  }else{
@@ -114,7 +119,7 @@ public class Settings extends AppCompatActivity {
                  if(!(pNumber.getText().toString().trim().equals(""))){
                      pnumber = pNumber.getText().toString();
                      SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
-                     editor.putString("pnumber", pNumber.getText().toString());
+                     editor.putString("pnumber", pnumber);
                      editor.apply();
                      Toast.makeText(Settings.this, "设置成功", Toast.LENGTH_SHORT).show();
                      setNumber.setText("     被监控端手机号：" + pnumber);

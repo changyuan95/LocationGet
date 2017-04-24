@@ -1,13 +1,8 @@
 package com.example.locationget;
 
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapStatusUpdate;
@@ -16,26 +11,29 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 
+public class TrackMap extends AppCompatActivity {
 
-
-public class ShowMap extends AppCompatActivity {
+    private String smsContent;
+    private Double longitude;
+    private Double latitude;
 
     private MapView mapView;
     private BaiduMap baiduMap;
-    private Double longitude;
-    private Double latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
-        setContentView(R.layout.activity_show_map);
-        mapView = (MapView)findViewById(R.id.bmapView);
+        setContentView(R.layout.activity_track_map);
+        mapView = (MapView)findViewById(R.id.tmapView);
 
-        //获取data数据中的经纬度数据
-        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
-        longitude = Double.parseDouble(pref.getString("longitude", ""));
-        latitude = Double.parseDouble(pref.getString("latitude", ""));
+        //获取短信内容
+        smsContent = getIntent().getStringExtra("string_sms");
+
+        //拆分短信获得经纬度
+        String[] point = smsContent.split(",");
+        longitude = Double.parseDouble(point[0]);
+        latitude = Double.parseDouble(point[1]);
 
         baiduMap = mapView.getMap();
         baiduMap.setMyLocationEnabled(true);
@@ -51,9 +49,7 @@ public class ShowMap extends AppCompatActivity {
         locationBuilder.longitude(longitude);
         MyLocationData locationData = locationBuilder.build();
         baiduMap.setMyLocationData(locationData);
-
     }
-
 
     @Override
     protected void onResume() {
@@ -73,5 +69,4 @@ public class ShowMap extends AppCompatActivity {
         mapView.onDestroy();
         baiduMap.setMyLocationEnabled(false);
     }
-
 }

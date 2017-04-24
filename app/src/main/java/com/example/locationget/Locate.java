@@ -29,7 +29,8 @@ public class Locate extends AppCompatActivity{
     private Button showMap;
     private Button autoSend;
 
-    public String context;
+    private String context;
+    private String sms;
 
     private String number = "";
 
@@ -54,6 +55,9 @@ public class Locate extends AppCompatActivity{
 
         //读取data数据中的位置数据
         context = pref.getString("location", "");
+        //读取data数据中的短信数据
+        sms = pref.getString("sms", "");
+
         positionText = (TextView)findViewById(R.id.position_text_view);
         positionText.setText(context);
         sendText = (Button)findViewById(R.id.send_text);
@@ -61,7 +65,7 @@ public class Locate extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(number != ""){
-                    send1(number, context);
+                    send1(number, sms);
                 }
                 else{
                     Toast.makeText(Locate.this, "请先设置目标手机号", Toast.LENGTH_SHORT).show();
@@ -91,7 +95,7 @@ public class Locate extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(number != ""){
-                    autosend(number, context);
+                    autosend(number, sms);
                 }
                 else{
                     Toast.makeText(Locate.this, "请先设置目标手机号", Toast.LENGTH_SHORT).show();

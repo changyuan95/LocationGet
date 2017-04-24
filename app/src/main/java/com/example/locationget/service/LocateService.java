@@ -72,8 +72,13 @@ public class LocateService extends Service {
             currentPosition.append("街道：").append(location.getStreet()).append("\n");
             currentPosition.append("GPS时间：").append(location.getTime());
             context = currentPosition.toString();
+            StringBuilder sms = new StringBuilder();
+            sms.append(location.getLongitude()).append(",").append(location.getLatitude());
             SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
             editor.putString("location", context);
+            editor.putString("longitude", "" + location.getLongitude());
+            editor.putString("latitude", "" + location.getLatitude());
+            editor.putString("sms", sms.toString());
             editor.apply();
 
         }
