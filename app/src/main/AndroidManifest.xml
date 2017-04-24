@@ -52,7 +52,8 @@
             android:theme="@style/RecordActivityTheme" />
         <activity
             android:name=".Track"
-            android:label="实时追踪" />
+            android:label="实时追踪"
+            android:theme="@style/RecordActivityTheme" />
         <activity
             android:name=".Information"
             android:label="个人中心"
@@ -67,10 +68,16 @@
         <activity
             android:name=".Record"
             android:label="位置记录"
-            android:theme="@style/RecordActivityTheme"></activity>
-        <activity android:name=".SetInformation"
+            android:theme="@style/RecordActivityTheme" />
+        <activity
+            android:name=".SetInformation"
             android:label="个人信息设置"
-            android:theme="@style/RecordActivityTheme"></activity>
+            android:theme="@style/RecordActivityTheme" />
+
+        <service
+            android:name=".service.LocateService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

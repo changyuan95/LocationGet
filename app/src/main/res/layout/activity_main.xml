@@ -22,7 +22,7 @@
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 app:cardCornerRadius="4dp"
-                android:id="@+id/function1"
+                android:id="@+id/func_locate"
                 android:foreground="?attr/selectableItemBackground">
 
                 <LinearLayout
@@ -34,7 +34,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="190dp"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/function1"/>
+                        android:background="@drawable/func_locate"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                 android:layout_margin="5dp"
                 app:cardCornerRadius="4dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:id="@+id/function2">
+                android:id="@+id/func_track">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="190dp"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/function2"/>
+                        android:background="@drawable/func_track"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
                 android:layout_margin="5dp"
                 app:cardCornerRadius="4dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:id="@+id/function3">
+                android:id="@+id/func_record">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="190dp"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/function5"/>
+                        android:background="@drawable/func_record"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                 android:layout_margin="5dp"
                 app:cardCornerRadius="4dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:id="@+id/function4">
+                android:id="@+id/func_info">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="190dp"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/function3"/>
+                        android:background="@drawable/func_info"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -151,7 +151,7 @@
                 android:layout_margin="5dp"
                 app:cardCornerRadius="4dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:id="@+id/function5">
+                android:id="@+id/func_settings">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,7 +162,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="190dp"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/function4"/>
+                        android:background="@drawable/func_settings"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -180,7 +180,7 @@
                 android:layout_margin="5dp"
                 app:cardCornerRadius="4dp"
                 android:foreground="?attr/selectableItemBackground"
-                android:id="@+id/function6">
+                android:id="@+id/func_about">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -191,7 +191,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="190dp"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/function6"/>
+                        android:background="@drawable/func_about"/>
 
                     <TextView
                         android:layout_width="wrap_content"

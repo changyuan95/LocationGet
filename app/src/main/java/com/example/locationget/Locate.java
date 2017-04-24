@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -37,6 +38,7 @@ public class Locate extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locate);
 
+        //Glide加载图片
         ImageView secondImage = (ImageView)findViewById(R.id.second_image);
         Glide.with(this).load(R.drawable.banana).into(secondImage);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_second);
@@ -50,7 +52,8 @@ public class Locate extends AppCompatActivity{
         SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
         number = pref.getString("number", "");
 
-        context = getIntent().getStringExtra("string_data");
+        //读取data数据中的位置数据
+        context = pref.getString("location", "");
         positionText = (TextView)findViewById(R.id.position_text_view);
         positionText.setText(context);
         sendText = (Button)findViewById(R.id.send_text);
@@ -97,6 +100,17 @@ public class Locate extends AppCompatActivity{
         });
     }
 
+    //处理HomeAsUp按钮点击事件
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void send1(String number, String message){
         Uri uri = Uri.parse("smsto:" + number);
         Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
@@ -114,4 +128,13 @@ public class Locate extends AppCompatActivity{
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+        number = pref.getString("number", "");
+        context = pref.getString("location", "");
+        positionText = (TextView)findViewById(R.id.position_text_view);
+        positionText.setText(context);
+    }
 }
